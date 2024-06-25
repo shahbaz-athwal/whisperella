@@ -22,6 +22,7 @@ model User {
   password  String 
   name      String?
   verifyCode String
+  isVerified Boolean @default(false)
   codeExpire DateTime
   isAcceptingMessages Boolean @default(true)
   messages  Message[]
