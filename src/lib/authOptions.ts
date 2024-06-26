@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials: any): Promise<any> {
         try {
-          const user = await db.user.findMany({
+          const user = await db.user.findFirst({
             where: {
               OR: [
                 {
@@ -26,18 +26,18 @@ export const authOptions: NextAuthOptions = {
               ],
             },
           });
-          if (!user[0]) {
+          if (!user) {
               throw new Error("User not found.");
             
           }
-          if (!user[0].isVerified) {
+          if (!user.isVerified) {
               throw new Error("Please verify your email.");
             
           }
-          const isPasswordCorrect = await bcrypt.compare(credentials.password, user[0].password)
+          const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password)
 
           if (isPasswordCorrect) {
-            return user[0]
+            return user
           }else {
             throw new Error("Incorrect Password");
           }

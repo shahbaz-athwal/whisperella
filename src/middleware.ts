@@ -14,12 +14,13 @@ export async function middleware(request: NextRequest) {
       url.pathname.startsWith("/verify") ||
       url.pathname.startsWith("/"))
   ) {
+    console.log(token)
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 //   return NextResponse.redirect(new URL("/home", request.url));
 }
 
 // See "Matching Paths" below to learn more
-export const config = {
-  matcher: ["/signin", "/signup", "/", "/dashboard/:path*", "/verify/:path*"],
-};
+// export const config = {
+//   matcher: ["/signin", "/signup", "/", "/dashboard/:path*", "/verify/:path*"],
+// };
