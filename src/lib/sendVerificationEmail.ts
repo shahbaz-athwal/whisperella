@@ -10,7 +10,7 @@ export async function sendVerificationEmail(
   try {
     const emailBody = {
       from: "ShahCodes <verify@shahcodes.in>",
-      to: ["shahbazathwal2107@gmail.com"],
+      to: email,
       subject: "Verification Code",
       react: VerificationEmail({
         username,

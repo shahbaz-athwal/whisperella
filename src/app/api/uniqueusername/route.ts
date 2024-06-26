@@ -29,7 +29,8 @@ export async function GET(request: Request) {
         const { username } = result.data
         const userFromDb = await db.user.findUnique({
             where: {
-                username: username
+                username: username,
+                isVerified: true
             }
         })
         if (userFromDb) {
@@ -46,7 +47,7 @@ export async function GET(request: Request) {
             message: "Username is available."
         },
         {
-            status: 409
+            status: 200
         })
     } catch (error) {
         console.error("Error checking username.",error)
