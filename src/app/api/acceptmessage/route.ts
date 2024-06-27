@@ -1,10 +1,10 @@
 import {  getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import db from "@/lib/db";
-import { number } from "zod";
 
-export async function POST(request: Request) {
+export async function PUT(request: Request) {
     const session = await getServerSession(authOptions)
+    console.log(session)
     const user = session?.user 
     if (!session || !session.user) {
         return Response.json({
