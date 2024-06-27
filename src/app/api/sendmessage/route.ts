@@ -1,5 +1,3 @@
-import {  getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import db from "@/lib/db";
 
 export async function POST(request: Request) {

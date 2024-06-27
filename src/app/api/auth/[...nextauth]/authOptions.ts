@@ -35,6 +35,9 @@ export const authOptions: NextAuthOptions = {
             
           }
           const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password)
+          console.log(credentials.password)
+          console.log(user.password)
+          console.log(isPasswordCorrect)
 
           if (isPasswordCorrect) {
             return user
@@ -49,9 +52,9 @@ export const authOptions: NextAuthOptions = {
       
     }),
   ],
-//   pages: {
-//     signIn: '/signin',
-//   },
+  pages: {
+    signIn: '/signin',
+  },
   session: {
     strategy: "jwt"
   },
@@ -61,9 +64,9 @@ export const authOptions: NextAuthOptions = {
         token, user
     }) {
         if (user) {
-          token.userId = user.userId?.toString()
+          token.userId = user.id?.toString()
           token.username = user.username
-          token.isAcceptingMessage = user.isAcceptingMessage
+          token.isAcceptingMessages = user.isAcceptingMessages
           token.isVerified = user.isVerified
   
         }
@@ -76,8 +79,9 @@ export const authOptions: NextAuthOptions = {
             session.user.userId = token.userId
             session.user.username = token.username
             session.user.isVerified = token.isVerified
-            session.user.isAcceptingMessage = token.isAcceptingMessage
+            session.user.isAcceptingMessages = token.isAcceptingMessages
         }
+ 
         return session
     }
   }

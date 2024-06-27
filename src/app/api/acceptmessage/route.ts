@@ -4,8 +4,6 @@ import db from "@/lib/db";
 
 export async function PUT(request: Request) {
     const session = await getServerSession(authOptions)
-    console.log(session)
-    const user = session?.user 
     if (!session || !session.user) {
         return Response.json({
             success: false,
@@ -14,7 +12,7 @@ export async function PUT(request: Request) {
             status: 401
         })
     }
-    const userId = session.user.userId
+    const userId = session.user
     const { acceptMessages } = await request.json()
     try {
         const updatedUser = await db.user.update({
@@ -55,7 +53,6 @@ export async function PUT(request: Request) {
 
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions)
-    const user = session?.user 
     if (!session || !session.user) {
         return Response.json({
             success: false,

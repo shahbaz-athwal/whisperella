@@ -5,7 +5,7 @@ declare module 'next-auth' {
     interface User {
         userId?: string; 
         isVerified?: boolean;
-        isAcceptingMessage?: boolean;
+        isAcceptingMessages?: boolean;
         username?: string
     }
     
@@ -18,7 +18,7 @@ declare module 'next-auth/jwt' {
     interface JWT {
       userId?: string;
       isVerified?: boolean;
-      isAcceptingMessage?: boolean;
+      isAcceptingMessages?: boolean;
       username?: string;
     }
   }
