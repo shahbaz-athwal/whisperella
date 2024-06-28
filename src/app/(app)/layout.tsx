@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 
 
@@ -13,7 +14,7 @@ export default function layout({
 }>) {
   return(
   <>
-    <div>hi</div>
+    <Navbar />
     {children}
   </>);
 }

@@ -12,7 +12,7 @@ export async function PUT(request: Request) {
             status: 401
         })
     }
-    const userId = session.user
+    const userId = session.user.userId
     const { acceptMessages } = await request.json()
     try {
         const updatedUser = await db.user.update({
@@ -20,7 +20,7 @@ export async function PUT(request: Request) {
                 id: Number(userId)
             },
             data: {
-                isAcceptingMessages: acceptMessages
+                isAcceptingMessages: !acceptMessages
             }
         })
         if (!updatedUser) {
@@ -33,8 +33,7 @@ export async function PUT(request: Request) {
         }
         return Response.json({
             success: true,
-            message: "Accept message toggled",
-            updatedUser
+            message: updatedUser.isAcceptingMessages? "You are now acepting messages!" : "You stopped accepting messages!"
         },{
             status: 200
         })

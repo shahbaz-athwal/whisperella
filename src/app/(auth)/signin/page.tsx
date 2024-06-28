@@ -59,6 +59,10 @@ export default function page() {
       }
   
       if (result?.url) {
+        toast({
+          title: 'Logged In!',
+          variant: "default",
+        })
         router.replace('/dashboard');
       }
   };

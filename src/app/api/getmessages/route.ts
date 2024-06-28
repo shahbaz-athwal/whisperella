@@ -4,7 +4,6 @@ import db from "@/lib/db";
 
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions)
-    console.log(session)
     if (!session || !session.user) {
         return Response.json({
             success: false,
