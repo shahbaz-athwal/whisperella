@@ -4,7 +4,7 @@ import db from "@/lib/db";
 
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions)
-    const user = session?.user 
+    console.log(session)
     if (!session || !session.user) {
         return Response.json({
             success: false,
@@ -30,7 +30,7 @@ export async function GET(request: Request) {
         }
         return Response.json({
             success: true,
-            messages: messages.reverse()
+            messages: messages
             
         },{
             status: 200
