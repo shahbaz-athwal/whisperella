@@ -29,7 +29,7 @@ export async function GET(request: Request) {
         }
         return Response.json({
             success: true,
-            messages: messages
+            messages: messages.reverse()
             
         },{
             status: 200

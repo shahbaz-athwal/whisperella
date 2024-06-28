@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { signIn } from "next-auth/react";
 
-export default function page() {
+export default function Page() {
 
 
     const [isSubmitting, setIsSubmitting] = useState(false);

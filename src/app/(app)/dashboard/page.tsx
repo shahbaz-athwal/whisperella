@@ -14,8 +14,7 @@ import { Switch } from "@/components/ui/switch";
 import { z } from "zod";
 import { Separator } from "@radix-ui/react-separator";
 
-
-export default function page() {
+export default function Page() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
@@ -43,11 +42,12 @@ export default function page() {
       form.setValue("acceptMessages", response.data.isAcceptingMessages!);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      console.log(axiosError)
+      console.log(axiosError);
       toast({
         title: "Error",
         description:
-          axiosError.response?.data.message || "Error getting accept message status",
+          axiosError.response?.data.message ||
+          "Error getting accept message status",
         variant: "destructive",
       });
     } finally {
@@ -93,7 +93,7 @@ export default function page() {
       });
       form.setValue("acceptMessages", !acceptMessages);
       toast({
-        title: !acceptMessages? "Yay!": "Oh no!",
+        title: !acceptMessages ? "Yay!" : "Oh no!",
         description: response.data.message,
         variant: "default",
       });
@@ -130,7 +130,9 @@ export default function page() {
   return (
     <>
       <div className="mb-4">
-        <h2 className="text-lg ml-6 font-semibold mb-2">Copy Your Unique Link</h2>
+        <h2 className="text-lg ml-6 font-semibold mb-2">
+          Copy Your Unique Link
+        </h2>
         <div className="relative flex items-center p-4 border rounded-md bg-gray-50 ml-5 mr-5">
           <input
             type="text"
@@ -157,13 +159,17 @@ export default function page() {
       </div>
       <Separator className="my-3" />
 
-      {messages.map((message) => (
-        <MessageCard
-          key={message.id}
-          message={message}
-          onMessageDelete={deleteMessage}
-        />
-      ))}
+      {messages.length === 0 ? (
+        <div>You have no messages.</div>
+      ) : (
+        messages.map((message) => (
+          <MessageCard
+            key={message.id}
+            message={message}
+            onMessageDelete={deleteMessage}
+          />
+        ))
+      )}
     </>
   );
 }

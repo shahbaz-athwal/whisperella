@@ -23,7 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
-export default function page() {
+export default function Page() {
   const [isVerifying, setIsVerifying] = useState(false);
   const router = useRouter();
   const params = useParams<{ username: string }>();

@@ -1,7 +1,8 @@
 import db from "@/lib/db";
 
 export async function POST(request: Request) {
-    const { username, message } = await request.json()
+    const { username, content } = await request.json()
+    console.log(username, content)
     try {
         const user = await db.user.findUnique({
             where: {
@@ -27,7 +28,7 @@ export async function POST(request: Request) {
         await db.message.create({
             data: {
                 userId: user.id,
-                content: message
+                content: content
             }
             
         })
