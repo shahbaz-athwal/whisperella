@@ -15,10 +15,10 @@ declare module 'next-auth' {
 }
 
 declare module 'next-auth/jwt' {
-    interface JWT {
+    interface JWT extends DefaultJWT{
       userId?: string;
       isVerified?: boolean;
       isAcceptingMessages?: boolean;
       username?: string;
-    }
+    } 
   }

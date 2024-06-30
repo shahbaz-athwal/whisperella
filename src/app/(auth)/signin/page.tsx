@@ -15,13 +15,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 export default function Page() {
-
-
-    const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const { toast } = useToast();
@@ -35,36 +34,35 @@ export default function Page() {
     },
   });
 
+  const oauthSigin = async (provider: string) => {
+    await signIn(provider, {
+      callbackUrl: "/dashboard",
+    });
+  };
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-    const result = await signIn("credentials",{
-        redirect: false,
-        identifier: data.identifier,
-        password: data.password
-    })
+    const result = await signIn("credentials", {
+      redirect: false,
+      identifier: data.identifier,
+      password: data.password,
+    });
+
     if (result?.error) {
-        if (result.error === 'CredentialsSignin') {
-          toast({
-            title: 'Login Failed',
-            description: 'Incorrect username or password',
-            variant: 'destructive',
-          });
-        } else {
-          toast({
-            title: 'Error',
-            description: result.error,
-            variant: 'destructive',
-          });
-        }
-      }
-  
-      if (result?.url) {
-        toast({
-          title: 'Logged In!',
-          variant: "default",
-        })
-        router.replace('/dashboard');
-      }
+      toast({
+        title: "Signin Failed",
+        description: "Please check your credentials",
+        variant: "destructive",
+      });
+    }
+
+    if (result?.url) {
+      toast({
+        title: "Logged In!",
+        variant: "default",
+      });
+
+      router.replace("/dashboard");
+    }
   };
 
   return (
@@ -73,7 +71,7 @@ export default function Page() {
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-              TrueStone
+            Whisperella
             </h1>
             <p className="mb-4">Sign in to your TrueStone account </p>
           </div>
@@ -86,7 +84,11 @@ export default function Page() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Username/Email</FormLabel>
-                      <Input placeholder="" {...field} className="w-full bg-zinc-100" />
+                      <Input
+                        placeholder=""
+                        {...field}
+                        className="w-full bg-zinc-100"
+                      />
                       <FormMessage />
                     </FormItem>
                   )}
@@ -122,21 +124,35 @@ export default function Page() {
                 />
               </div>
               <Button
-                disabled={isSubmitting}
                 type="submit"
                 className="w-full flex items-center justify-center"
               >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Please wait
-                  </>
-                ) : (
-                  "Sign In"
-                )}
+                Sign In
               </Button>
             </form>
           </Form>
+          <div className="flex justify-center">
+          <Separator className="my-4 rounded h-0.5 w-32" />
+          <div className="pt-1.5 pl-2 pr-2 text-sm text-zinc-500">or</div>
+          <Separator className="my-4 rounded h-0.5 w-32" />
+          </div>
+          <Button
+            onClick={() => {
+              console.log("click");
+              oauthSigin("github");
+            }}
+            className="w-full flex items-center justify-center mt-4"
+          >
+            Sign In with GitHub
+          </Button>
+          <div className="text-center mt-4">
+          <p>
+            Not a member yet?{' '}
+            <Link href="/signup" className="text-gray-600 underline hover:text-black">
+              Sign up
+            </Link>
+          </p>
+        </div>
         </div>
       </div>
     </>

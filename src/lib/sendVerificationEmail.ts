@@ -11,7 +11,7 @@ export async function sendVerificationEmail(
     const emailBody = {
       from: "ShahCodes <verify@shahcodes.in>",
       to: email,
-      subject: "Verification Code for TrueStone",
+      subject: "Verification Code for Whisperella",
       react: VerificationEmail({
         username,
         otp: otp,

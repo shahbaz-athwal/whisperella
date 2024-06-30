@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
+import Link from "next/link";
 
 export default function Page() {
   const [username, setUsername] = useState("");
@@ -95,7 +96,7 @@ export default function Page() {
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-              Join TrueStone
+              Join Whisperella
             </h1>
             <p className="mb-4">Sign up to start getting anonymous messages </p>
           </div>
@@ -194,6 +195,14 @@ export default function Page() {
               </Button>
             </form>
           </Form>
+          <div className="text-center mt-4">
+          <p>
+            Already a member?{' '}
+            <Link href="/signin" className="text-gray-700 underline hover:text-black">
+              Sign in
+            </Link>
+          </p>
+        </div>
         </div>
       </div>
     </>
