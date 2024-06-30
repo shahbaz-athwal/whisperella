@@ -4,18 +4,34 @@ import db from "@/lib/db";
 import authConfig from "./auth.config";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+
+  pages: {
+    signIn: "/signin",
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        if (!user.username) {
+          const username = user.email!.split("@")[0];
+          await db.user.update({
+            where: {
+              email: user.email!,
+            },
+            data: {
+              username: username,
+            },
+          });
+          user.username = username;
+        }
         token.userId = user.id?.toString();
         token.username = user.username;
         token.picture = user.image;
         token.isAcceptingMessages = user.isAcceptingMessages;
         token.isVerified = user.isVerified;
-      }
+      } 
       return token;
     },
-    async session({ session, token } : any) {
+    async session({ session, token }: any) {
       if (token) {
         session.user.userId = token.userId;
         session.user.username = token.username;
@@ -24,21 +40,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         session.user.isAcceptingMessages = token.isAcceptingMessages;
       }
       return session;
-    },
-    async signIn({ user }) {
-      if(!user.username){
-        const username = user.email!.split("@")[0]
-        console.log(username)
-        await db.user.update({
-          where: {
-            email: user.email!
-          },
-          data: {
-            username: username 
-          }
-        })
-      }
-      return true;
     },
   },
   adapter: PrismaAdapter(db),

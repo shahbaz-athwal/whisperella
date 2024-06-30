@@ -35,7 +35,7 @@
         }
 
         const isCodeCorrect = user?.verifyCode === code
-        const isCodeValid= new Date(user.codeExpire) > new Date()
+        const isCodeValid= new Date(user.codeExpire!) > new Date()
 
         if (isCodeCorrect && isCodeValid) {
             await db.user.update({
