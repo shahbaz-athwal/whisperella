@@ -137,6 +137,13 @@ export default function Page() {
               </Button>
             </form>
           </Form>
+          <Button
+            onClick={() => signIn('github',{callbackUrl: '/dashboard'})}
+            className="w-full flex items-center justify-center mt-4"
+          >
+            {/* <Github className="mr-2 h-4 w-4" /> */}
+            Sign In with GitHub
+          </Button>
         </div>
       </div>
     </>

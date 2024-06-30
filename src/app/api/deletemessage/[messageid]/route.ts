@@ -1,12 +1,11 @@
-import { getServerSession } from "next-auth/next";
+import {  auth } from "@/auth";
 import db from "@/lib/db";
-import { authOptions } from "../../auth/[...nextauth]/authOptions";
 
 export async function DELETE(request: Request, 
   { params }: { params: { messageid: string } }
 ) {
   const messageId = params.messageid;
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session || !session?.user) {
     return Response.json(
       { success: false, message: "Not authenticated" },

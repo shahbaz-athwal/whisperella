@@ -19,10 +19,10 @@ function Navbar() {
         </a>
         {session ? (
           <div className="flex items-center space-x-4">
-            <span className="hidden md:inline-block">Welcome, {user.username || user.name}</span>
+            <span className="hidden md:inline-block">Welcome, {user.name || user.username}</span>
             <Avatar className="mr-2">
               <AvatarImage src={user.image as string} />
-              <AvatarFallback className="bg-black">{user.username![0]}</AvatarFallback>
+              <AvatarFallback className="bg-black">{"O"}</AvatarFallback>
             </Avatar>
             <Button
               onClick={() => signOut()}

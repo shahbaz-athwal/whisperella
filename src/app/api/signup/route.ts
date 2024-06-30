@@ -1,5 +1,5 @@
 import db from "@/lib/db";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { sendVerificationEmail } from "@/lib/sendVerificationEmail";
 import { Prisma } from "@prisma/client";
 
