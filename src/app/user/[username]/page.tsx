@@ -1,62 +1,58 @@
-"use client"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
-import { Button } from "@/components/ui/button"
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
-import { messageSchema } from "@/schema/messages"
-import { useParams } from "next/navigation"
-import { ApiResponse } from "@/types/ApiResponse"
-import axios, { AxiosError } from "axios"
-import { useState } from "react"
-import { Link, Loader2 } from "lucide-react"
-import { Separator } from "@radix-ui/react-separator"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/components/ui/use-toast";
+import { messageSchema } from "@/schema/messages";
+import { useParams } from "next/navigation";
+import { ApiResponse } from "@/types/ApiResponse";
+import axios, { AxiosError } from "axios";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 export default function Page() {
-  const params = useParams<{username: string}>()
-  const username = params.username
+  const params = useParams<{ username: string }>();
+  const username = params.username;
   const [isLoading, setIsLoading] = useState(false);
-
 
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
-  })
+  });
 
   async function onSubmit(data: z.infer<typeof messageSchema>) {
     try {
-      const response = await axios.post<ApiResponse>('/api/sendmessage', {
+      const response = await axios.post<ApiResponse>("/api/sendmessage", {
         ...data,
         username,
       });
 
       toast({
         title: response.data.message,
-        variant: 'default',
+        variant: "default",
       });
-      form.reset({ ...form.getValues(), content: '' });
+      form.reset({ ...form.getValues(), content: "" });
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
-        title: 'Error',
+        title: "Error",
         description:
-          axiosError.response?.data.message ?? 'Failed to sent message',
-        variant: 'destructive',
+          axiosError.response?.data.message ?? "Failed to sent message",
+        variant: "destructive",
       });
     } finally {
       setIsLoading(false);
     }
-
   }
 
   return (
@@ -72,11 +68,11 @@ export default function Page() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Send Anonymous Message to @{username}</FormLabel>
-                  <Textarea
-                    placeholder="Write your anonymous message here"
-                    className="resize-none"
-                    {...field}
-                  />
+                <Textarea
+                  placeholder="Write your anonymous message here"
+                  className="resize-none"
+                  {...field}
+                />
                 <FormMessage />
               </FormItem>
             )}
@@ -88,54 +84,20 @@ export default function Page() {
                 Please wait
               </Button>
             ) : (
-              <Button type="submit" >
-                Send It
-              </Button>
+              <Button type="submit">Send It</Button>
             )}
           </div>
         </form>
       </Form>
-
-      {/* <div className="space-y-4 my-8">
-        <div className="space-y-2">
-          <Button
-            onClick={}
-            className="my-4"
-            disabled={}
-          >
-            Suggest Messages
-          </Button>
-          <p>Click on any message below to select it.</p>
-        </div>
-        <Card>
-          <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
-          </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
-            {error ? (
-              <p className="text-red-500">{error.message}</p>
-            ) : (
-              parseStringMessages(completion).map((message, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  className="mb-2"
-                  onClick={() => handleMessageClick(message)}
-                >
-                  {message}
-                </Button>
-              ))
-            )}
-          </CardContent>
-        </Card>
-      </div> */}
-      <Separator className="my-6" />
+      <div className="flex justify-center">
+        <Separator className="my-6 h-0.5 rounded w-8/12" />
+      </div>
       <div className="text-center">
         <div className="mb-4">Get Your Message Board</div>
-        <Link href={'/sign-up'}>
+        <Link href={"/signup"}>
           <Button>Create Your Account</Button>
         </Link>
       </div>
     </div>
-  )
+  );
 }

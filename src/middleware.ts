@@ -19,7 +19,6 @@ export default auth((req) => {
   if (!isAuthenticated && url.pathname.startsWith('/dashboard')) {
     return Response.redirect(new URL('/signin', req.url));
   }
- // code ...
 })
 
 export const config = {

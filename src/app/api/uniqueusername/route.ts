@@ -1,6 +1,6 @@
 import db from "@/lib/db";
 import z from "zod"
-import { usernameSchema, signUpSchema } from "@/schema/signUp";
+import { usernameSchema } from "@/schema/signUp";
 
 const UsernameQuerySchema = z.object({
     username: usernameSchema
