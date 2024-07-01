@@ -1,26 +1,30 @@
-import authConfig from "./auth.config"
-import NextAuth from "next-auth"
+import authConfig from "./auth.config";
+import NextAuth from "next-auth";
 
-const { auth } = NextAuth(authConfig)
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
-  const isAuthenticated = !!req.auth
+  const isAuthenticated = !!req.auth;
   const url = req.nextUrl;
   if (
     isAuthenticated &&
-    (url.pathname.startsWith('/sign-in') ||
-      url.pathname.startsWith('/sign-up') ||
-      url.pathname.startsWith('/verify') ||
-      url.pathname === '/')
+    (url.pathname.startsWith("/signin") ||
+      url.pathname.startsWith("/signup") ||
+      url.pathname.startsWith("/verify") ||
+      url.pathname === "/")
   ) {
-    return Response.redirect(new URL('/dashboard', req.url));
+    return Response.redirect(new URL("/dashboard", req.url));
   }
 
-  if (!isAuthenticated && url.pathname.startsWith('/dashboard')) {
-    return Response.redirect(new URL('/signin', req.url));
+  if (
+    !isAuthenticated &&
+    (url.pathname.startsWith("/dashboard") ||
+      url.pathname.startsWith("/feedback"))
+  ) {
+    return Response.redirect(new URL("/signin", req.url));
   }
-})
+});
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/sign-in', '/sign-up', '/', '/verify/:path*'],
+  matcher: ["/dashboard/:path*", "/signin", "/signup", "/", "/verify/:path*", "/feedback/:path*"],
 };
