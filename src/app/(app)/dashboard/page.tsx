@@ -12,7 +12,8 @@ import { useForm } from "react-hook-form";
 import { Copy } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { z } from "zod";
-import { Separator } from "@radix-ui/react-separator";
+import { Separator } from "@/components/ui/separator";
+
 
 export default function Page() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -128,47 +129,51 @@ export default function Page() {
   };
   return (
     <>
-      <div className="mb-4">
-        <h2 className="text-lg ml-6 font-semibold mb-2">
-          Copy Your Unique Link
-        </h2>
-        <div className="relative flex items-center p-4 border rounded-md bg-gray-50 ml-5 mr-5">
-          <input
-            type="text"
-            value={profileUrl}
-            disabled
-            className="w-full bg-transparent focus:outline-none"
-          />
-          <Button onClick={handleCopy} className="absolute right-4">
-            <Copy className="w-4 h-4 mr-1" />
-            {copied ? "Copied!" : "Copy"}
-          </Button>
-        </div>
-      </div>
-      <div className="mb-4">
-        <Switch
-          {...form.register("acceptMessages")}
-          checked={acceptMessages}
-          onCheckedChange={handleSwitchChange}
-          disabled={isSwitchLoading}
+    <div className="mb-4 mt-9 mx-2">
+      <h2 className="text-xl ml-6 font-semibold mb-2">
+        Copy Your Unique Link
+      </h2>
+      <div className="relative flex items-center">
+        <input
+          type="text"
+          value={profileUrl}
+          disabled
+          className="w-full bg-gray-50 border rounded-md p-4 focus:outline-none"
         />
-        <span className="ml-2">
-          Accept Messages: {acceptMessages ? "On" : "Off"}
-        </span>
+        <Button onClick={handleCopy} className="absolute right-4 top-1/2 -translate-y-1/2">
+          <Copy className="w-4 h-4 mr-1" />
+          {copied ? "Copied!" : "Copy"}
+        </Button>
       </div>
-      <Separator className="my-3" />
+    </div>
+  
+    <div className="flex items-center mb-4 mx-2">
+      <Switch
+        {...form.register("acceptMessages")}
+        checked={acceptMessages}
+        onCheckedChange={handleSwitchChange}
+        disabled={isSwitchLoading}
+      />
+      <span className="ml-2">
+        Accept Messages: {acceptMessages ? "On" : "Off"}
+      </span>
+    </div>
+  
+    <Separator className="my-5 mx-2" />
+  
+    {messages.length === 0 ? (
+      <div className="mx-2">You have no messages.</div>
+    ) : (
+      messages.map((message) => (
+        <MessageCard
+          key={message.id}
+          message={message}
+          onMessageDelete={deleteMessage}
+        />
+      ))
+    )}
+  </>
+  
 
-      {messages.length === 0 ? (
-        <div>You have no messages.</div>
-      ) : (
-        messages.map((message) => (
-          <MessageCard
-            key={message.id}
-            message={message}
-            onMessageDelete={deleteMessage}
-          />
-        ))
-      )}
-    </>
   );
 }

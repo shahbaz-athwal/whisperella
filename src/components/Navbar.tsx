@@ -22,10 +22,10 @@ function Navbar() {
             <span className="hidden md:inline-block">Welcome, {user.name || user.username}</span>
             <Avatar className="mr-2">
               <AvatarImage src={user.image as string} />
-              <AvatarFallback className="bg-black">{"O"}</AvatarFallback>
+              <AvatarFallback className="bg-black">{user.username? user.username[0].toUpperCase(): "O"}</AvatarFallback>
             </Avatar>
             <Button
-              onClick={() => signOut({callbackUrl:"/signin"})}
+              onClick={() => signOut({callbackUrl:"/"})}
               className="w-auto md:w-auto bg-slate-100 text-black"
               variant={"outline"}
             >
