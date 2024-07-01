@@ -73,7 +73,7 @@ export default function Page() {
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Whisperella
             </h1>
-            <p className="mb-4">Sign in to your TrueStone account </p>
+            <p className="mb-4">Sign in to your Whisperella account </p>
           </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -138,7 +138,6 @@ export default function Page() {
           </div>
           <Button
             onClick={() => {
-              console.log("click");
               oauthSigin("github");
             }}
             className="w-full flex items-center justify-center mt-4"

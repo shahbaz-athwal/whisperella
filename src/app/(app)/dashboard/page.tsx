@@ -42,7 +42,6 @@ export default function Page() {
       form.setValue("acceptMessages", response.data.isAcceptingMessages!);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      console.log(axiosError);
       toast({
         title: "Error",
         description:

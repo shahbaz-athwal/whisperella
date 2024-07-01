@@ -6,7 +6,6 @@
         const { username, code } = await request.json()
 
         const result = usernameSchema.safeParse(username)
-        console.log(result)
         
         if (!result.success) {
             const errors = result.error.format()._errors || []

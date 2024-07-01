@@ -68,7 +68,6 @@ export default function Page() {
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true);
     try {
-      console.log(data);
       const response = await axios.post<ApiResponse>("/api/signup", data);
       toast({
         title: "Success",

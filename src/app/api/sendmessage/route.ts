@@ -2,7 +2,6 @@ import db from "@/lib/db";
 
 export async function POST(request: Request) {
     const { username, content } = await request.json()
-    console.log(username, content)
     try {
         const user = await db.user.findUnique({
             where: {
