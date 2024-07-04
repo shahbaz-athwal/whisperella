@@ -129,6 +129,7 @@ export default function Page() {
   };
   return (
     <>
+  <div className="flex flex-col">
     <div className="mb-4 mt-9 mx-2">
       <h2 className="text-xl ml-6 font-semibold mb-2">
         Copy Your Unique Link
@@ -146,7 +147,7 @@ export default function Page() {
         </Button>
       </div>
     </div>
-  
+
     <div className="flex items-center mb-4 mx-2">
       <Switch
         {...form.register("acceptMessages")}
@@ -158,22 +159,25 @@ export default function Page() {
         Accept Messages: {acceptMessages ? "On" : "Off"}
       </span>
     </div>
-  
+
     <Separator className="my-5 mx-2" />
-  
-    {messages.length === 0 ? (
-      <div className="mx-2">You have no messages.</div>
-    ) : (
-      messages.map((message) => (
-        <MessageCard
-          key={message.id}
-          message={message}
-          onMessageDelete={deleteMessage}
-        />
-      ))
-    )}
-  </>
-  
+
+    <div className="flex-1">
+      {messages.length === 0 ? (
+        <div className="mx-2">You have no messages.</div>
+      ) : (
+        messages.map((message) => (
+          <MessageCard
+            key={message.id}
+            message={message}
+            onMessageDelete={deleteMessage}
+          />
+        ))
+      )}
+    </div>
+  </div>
+</>
+
 
   );
 }
