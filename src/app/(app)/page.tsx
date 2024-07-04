@@ -1,5 +1,4 @@
 "use client";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
@@ -9,7 +8,6 @@ import {
 import messages from "@/messages.json";
 import { Mail, StarIcon } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -51,10 +49,9 @@ export default function Page() {
           </p>
         </section>
 
-        {/* Carousel for Messages */}
         <Carousel
           plugins={[Autoplay({ delay: 3000 })]}
-          className="w-full max-w-lg md:max-w-xl"
+          className="flex items-center w-full max-w-lg md:max-w-xl"
         >
           <CarouselContent>
             {messages.map((message, index) => (
@@ -86,15 +83,6 @@ export default function Page() {
             <Button className="text-white">Give a star on GitHub</Button>
           </a>
         </div>
-
-        {/* Checkout my other projects on Portfolio Button */}
-        {/* <div className="mt-4">
-        Checkout my other projects on{' '}
-        <Button className="text-black bg-slate-200" variant={'outline'}>
-          Portfolio
-        </Button>
-      </div> */}
-
         <h2 className="text-2xl pt-8 font-bold mb-4 text-center">
           User Reviews
         </h2>
@@ -144,7 +132,6 @@ export default function Page() {
       </CarouselContent>
     </Carousel>
       </main>
-      <Footer />
     </>
   );
 }

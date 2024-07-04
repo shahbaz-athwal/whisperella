@@ -1,6 +1,6 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
-
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -12,9 +12,13 @@ export default function layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return(
-  <>
-    <Navbar />
-    {children}
-  </>);
+  return (
+    <>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        {children}
+        <Footer />
+      </div>
+    </>
+  );
 }
