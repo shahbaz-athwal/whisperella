@@ -39,7 +39,7 @@ const dummyReviews = [
 export default function Page() {
   return (
     <>
-      <div className="flex flex-col items-center text-center px-4 py-12 bg-zinc-50 text-zinc-800">
+      <div className="flex flex-col items-center text-center px-4 py-12 text-zinc-800">
         <section className="mb-8 md:mb-12">
           <h1 className="text-3xl md:text-5xl font-bold">
             Dive into the World of Anonymous Feedback
@@ -55,13 +55,13 @@ export default function Page() {
         >
           <CarouselContent>
             {messages.map((message, index) => (
-              <CarouselItem key={index} className="">
+              <CarouselItem key={index}>
                 <Card>
                   <CardHeader>
                     <CardTitle>{message.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
-                    <Mail className="flex-shrink-0" />
+                  <CardContent className="flex flex-col items-center">
+                    <Mail/>
                     <div>
                       <p>{message.content}</p>
                       <p className="text-xs text-muted-foreground">
@@ -91,7 +91,7 @@ export default function Page() {
           <CarouselContent>
             {dummyReviews.map((review) => (
               <CarouselItem key={review.id}>
-                <div className="rounded-lg shadow-sm border overflow-hidden">
+                <div className="rounded-lg border overflow-hidden">
                   <div className="flex justify-between p-4">
                     <div className="flex items-center">
                       <Avatar className="flex mr-2">
@@ -103,15 +103,15 @@ export default function Page() {
                           </AvatarFallback>
                         )}
                       </Avatar>
-                      <div className="flex flex-col">
+                      <div className="flex flex-col items-start">
                         <div className="text-sm font-bold">{review.name}</div>
                         <div className="flex">
                           {[...Array(review.rating)].map((_, index) => (
                             <StarIcon
-                              color="orange"
-                              fill="yellow"
+                              color="black"
+                              fill="gray"
                               key={index}
-                              className="w-5 h-5 text-yellow-500"
+                              className="w-5 h-5"
                             />
                           ))}
                         </div>
