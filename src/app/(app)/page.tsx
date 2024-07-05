@@ -39,8 +39,8 @@ const dummyReviews = [
 export default function Page() {
   return (
     <>
-      <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 bg-zinc-50 text-zinc-800">
-        <section className="text-center mb-8 md:mb-12">
+      <div className="flex flex-col items-center text-center px-4 py-12 bg-zinc-50 text-zinc-800">
+        <section className="mb-8 md:mb-12">
           <h1 className="text-3xl md:text-5xl font-bold">
             Dive into the World of Anonymous Feedback
           </h1>
@@ -51,13 +51,13 @@ export default function Page() {
 
         <Carousel
           plugins={[Autoplay({ delay: 3000 })]}
-          className="flex items-center w-full max-w-lg md:max-w-xl"
+          className="w-full max-w-lg md:max-w-xl"
         >
           <CarouselContent>
             {messages.map((message, index) => (
-              <CarouselItem key={index} className="p-4">
+              <CarouselItem key={index} className="">
                 <Card>
-                  <CardHeader className="">
+                  <CardHeader>
                     <CardTitle>{message.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
@@ -75,7 +75,7 @@ export default function Page() {
           </CarouselContent>
         </Carousel>
 
-        <div className="mt-8">
+        <div className="my-8">
           <a
             href="https://github.com/shahbaz-athwal/next-concepts"
             target="_blank"
@@ -83,55 +83,53 @@ export default function Page() {
             <Button className="text-white">Give a star on GitHub</Button>
           </a>
         </div>
-        <h2 className="text-2xl pt-8 font-bold mb-4 text-center">
-          User Reviews
-        </h2>
+        <h2 className="text-2xl font-bold mb-8">User Reviews</h2>
         <Carousel
-      plugins={[Autoplay({ delay: 5000 })]}
-      className="w-full max-w-lg md:max-w-xl"
-    >
-      <CarouselContent>
-        {dummyReviews.map((review) => (
-          <CarouselItem key={review.id} className="p-4">
-            <div className="bg-white shadow-md rounded-lg overflow-hidden">
-              <div className="flex justify-between items-center p-4">
-                <div className="flex items-center">
-                  <Avatar className="flex mr-2">
-                    {"" ? (
-                      <AvatarImage src={""} />
-                    ) : (
-                      <AvatarFallback className="bg-black text-white">
-                        {review.name.charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    )}
-                  </Avatar>
-                  <div className="flex flex-col">
-                    <div className="text-sm font-bold">{review.name}</div>
+          plugins={[Autoplay({ delay: 5000 })]}
+          className="w-full max-w-lg md:max-w-xl"
+        >
+          <CarouselContent>
+            {dummyReviews.map((review) => (
+              <CarouselItem key={review.id}>
+                <div className="rounded-lg shadow-sm border overflow-hidden">
+                  <div className="flex justify-between p-4">
                     <div className="flex items-center">
-                      {[...Array(review.rating)].map((_, index) => (
-                        <StarIcon
-                        color="orange"
-                        fill="yellow"
-                          key={index}
-                          className="w-5 h-5 text-yellow-500"
-                        />
-                      ))}
+                      <Avatar className="flex mr-2">
+                        {"" ? (
+                          <AvatarImage src={""} />
+                        ) : (
+                          <AvatarFallback className="bg-black text-white">
+                            {review.name.charAt(0).toUpperCase()}
+                          </AvatarFallback>
+                        )}
+                      </Avatar>
+                      <div className="flex flex-col">
+                        <div className="text-sm font-bold">{review.name}</div>
+                        <div className="flex">
+                          {[...Array(review.rating)].map((_, index) => (
+                            <StarIcon
+                              color="orange"
+                              fill="yellow"
+                              key={index}
+                              className="w-5 h-5 text-yellow-500"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {dayjs(review.createdDate).format("MMM D, YYYY h:mm A")}
                     </div>
                   </div>
+                  <div className="p-4">
+                    <p>{review.review}</p>
+                  </div>
                 </div>
-                <div className="text-sm text-gray-500">
-                  {dayjs(review.createdDate).format("MMM D, YYYY h:mm A")}
-                </div>
-              </div>
-              <div className="p-4">
-                <p>{review.review}</p>
-              </div>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
-      </main>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </div>
     </>
   );
 }

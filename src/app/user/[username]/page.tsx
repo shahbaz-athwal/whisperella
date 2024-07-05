@@ -56,7 +56,7 @@ export default function Page() {
   }
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
+    <div className="mx-auto my-8 p-6 bg-white rounded max-w-4xl">
       <h1 className="text-4xl font-bold mb-6 text-center">
         Public Profile Link
       </h1>
@@ -90,10 +90,10 @@ export default function Page() {
         </form>
       </Form>
       <div className="flex justify-center">
-        <Separator className="my-6 h-0.5 rounded w-8/12" />
+        <Separator className="my-8 bg-slate-200 h-0.5 rounded" />
       </div>
       <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
+        <div className="mb-4">Get Your Own Message Board</div>
         <Link href={"/signup"}>
           <Button>Create Your Account</Button>
         </Link>

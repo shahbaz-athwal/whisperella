@@ -14,7 +14,6 @@ import { Switch } from "@/components/ui/switch";
 import { z } from "zod";
 import { Separator } from "@/components/ui/separator";
 
-
 export default function Page() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +52,7 @@ export default function Page() {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [form.setValue, toast]);
+  }, [form.setValue]);
 
   //get messages from backend
   const fetchMessages = useCallback(async () => {
@@ -129,55 +128,56 @@ export default function Page() {
   };
   return (
     <>
-  <div className="flex flex-col">
-    <div className="mb-4 mt-9 mx-2">
-      <h2 className="text-xl ml-6 font-semibold mb-2">
-        Copy Your Unique Link
-      </h2>
-      <div className="relative flex items-center">
-        <input
-          type="text"
-          value={profileUrl}
-          disabled
-          className="w-full bg-gray-50 border rounded-md p-4 focus:outline-none"
-        />
-        <Button onClick={handleCopy} className="absolute right-4 top-1/2 -translate-y-1/2">
-          <Copy className="w-4 h-4 mr-1" />
-          {copied ? "Copied!" : "Copy"}
-        </Button>
-      </div>
-    </div>
+      <div className="flex flex-col max-w-7xl mx-auto p-5 md:p-8">
+        <div>
+          <h2 className="text-xl font-semibold my-4 ml-2">
+            Copy Your Unique Link
+          </h2>
+          <div className="relative items-center">
+            <input
+              type="text"
+              value={profileUrl}
+              disabled
+              className="w-full bg-gray-50 border rounded-md p-4 focus:outline-none"
+            />
+            <Button
+              onClick={handleCopy}
+              className="flex mx-auto my-4 sm:absolute sm:right-4 sm:top-1/2 sm:-translate-y-1/2 sm:my-0"
+            >
+              <Copy className="w-4 h-4 mr-1" />
+              {copied ? "Copied!" : "Copy"}
+            </Button>
+          </div>
+        </div>
 
-    <div className="flex items-center mb-4 mx-2">
-      <Switch
-        {...form.register("acceptMessages")}
-        checked={acceptMessages}
-        onCheckedChange={handleSwitchChange}
-        disabled={isSwitchLoading}
-      />
-      <span className="ml-2">
-        Accept Messages: {acceptMessages ? "On" : "Off"}
-      </span>
-    </div>
-
-    <Separator className="my-5 mx-2" />
-
-    <div className="flex-1">
-      {messages.length === 0 ? (
-        <div className="mx-2">You have no messages.</div>
-      ) : (
-        messages.map((message) => (
-          <MessageCard
-            key={message.id}
-            message={message}
-            onMessageDelete={deleteMessage}
+        <div className="flex space-x-2 m-4">
+          <Switch
+            {...form.register("acceptMessages")}
+            checked={acceptMessages}
+            onCheckedChange={handleSwitchChange}
+            disabled={isSwitchLoading}
           />
-        ))
-      )}
-    </div>
-  </div>
-</>
+          <span>Accept Messages: {acceptMessages ? "On" : "Off"}</span>
+        </div>
 
+        <Separator className="my-8 h-0.5 bg-zinc-400 rounded" />
 
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {messages.length === 0 ? (
+            <div className="flex text-xl justify-center m-4">
+              You have no messages.
+            </div>
+          ) : (
+            messages.map((message) => (
+              <MessageCard
+                key={message.id}
+                message={message}
+                onMessageDelete={deleteMessage}
+              />
+            ))
+          )}
+        </div>
+      </div>
+    </>
   );
 }

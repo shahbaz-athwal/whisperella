@@ -1,10 +1,10 @@
-'use client'
-import { Message } from '@/types/ApiResponse';
-import React from 'react';
-import axios, { AxiosError } from 'axios';
-import dayjs from 'dayjs';
-import { X } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+"use client";
+import { Message } from "@/types/ApiResponse";
+import React from "react";
+import axios, { AxiosError } from "axios";
+import dayjs from "dayjs";
+import { X } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,10 +15,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Button } from './ui/button';
-import { useToast } from '@/components/ui/use-toast';
-import { ApiResponse } from '@/types/ApiResponse';
+} from "@/components/ui/alert-dialog";
+import { Button } from "./ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { ApiResponse } from "@/types/ApiResponse";
 
 type MessageCardProps = {
   message: Message;
@@ -37,30 +37,31 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
         title: response.data.message,
       });
       onMessageDelete(message.id.toString());
-
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
-        title: 'Error',
+        title: "Error",
         description:
-          axiosError.response?.data.message ?? 'Failed to delete message',
-        variant: 'destructive',
+          axiosError.response?.data.message ?? "Failed to delete message",
+        variant: "destructive",
       });
-    } 
+    }
   };
 
   return (
-    <Card className="card-bordered ml-3 mr-3 mb-2">
+    <Card className="card-bordered">
       <CardHeader>
         <div className="flex justify-between items-center">
-          <CardTitle className='text-xxl'>{message.content}</CardTitle>
+          <CardTitle className="text-xl break-words overflow-hidden max-w-[85%]">
+            {message.content}
+          </CardTitle>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button size='sm' variant='destructive'>
+              <Button size="sm" variant="destructive">
                 <X className="w-5 h-5" />
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="w-11/12 rounded">
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
@@ -69,9 +70,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>
-                  Cancel
-                </AlertDialogCancel>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction onClick={handleDeleteConfirm}>
                   Delete
                 </AlertDialogAction>
@@ -80,10 +79,9 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
           </AlertDialog>
         </div>
         <div className="text-sm">
-          {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
+          {dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
         </div>
       </CardHeader>
-      <CardContent></CardContent>
     </Card>
   );
 }

@@ -13,8 +13,8 @@ function Navbar() {
 
   return (
     <nav className="p-4 md:p-6 shadow-md bg-zinc-800 text-white">
-      <div className="container mx-auto flex  md:flex-row justify-between items-center">
-        <a href="#" className="text-4xl font-bold  md:mb-0">
+      <div className="flex max-w-7xl mx-auto justify-between">
+        <a href="#" className="text-4xl font-bold">
           Whisperella
         </a>
         {session ? (
@@ -22,7 +22,7 @@ function Navbar() {
             <span className="hidden md:inline-block">
               Welcome, {user.name || user.username}
             </span>
-            <Avatar className="mr-2">
+            <Avatar>
               <AvatarImage src={user.image as string} />
               <AvatarFallback className="bg-black">
                 {user.username ? user.username[0].toUpperCase() : "O"}
@@ -30,7 +30,7 @@ function Navbar() {
             </Avatar>
             <Button
               onClick={() => signOut({ callbackUrl: "/" })}
-              className="w-auto md:w-auto bg-slate-100 text-black"
+              className="bg-slate-100 text-black"
               variant={"outline"}
             >
               Logout
@@ -39,7 +39,7 @@ function Navbar() {
         ) : (
           <Link href="/signin">
             <Button
-              className="w-full md:w-auto bg-slate-100 text-black"
+              className="bg-slate-100 text-black"
               variant={"outline"}
             >
               Login

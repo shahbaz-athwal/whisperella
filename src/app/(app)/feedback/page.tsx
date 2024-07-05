@@ -44,8 +44,9 @@ export default function RatingsPage()  {
     }
   };
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Rate Our Service</h1>
+    <div className="w-full mx-auto p-6 sm:p-10">
+      <h1 className="text-2xl md:text-3xl font-bold mb-4 text-center">Rate Our Service</h1>
+      <h1 className="text-xl mb-12 text-center">Your review will be featured on home page</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -53,7 +54,7 @@ export default function RatingsPage()  {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Rating</FormLabel>
+                <FormLabel className="text-lg">Rating</FormLabel>
 
                 <Rating
                   rating={rating}
@@ -72,12 +73,12 @@ export default function RatingsPage()  {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Comment</FormLabel>
+                <FormLabel className="text-lg">Comment</FormLabel>
                 <textarea
                   {...form.register("comment")}
                   className={"w-full p-2 border rounded"}
                   rows={4}
-                  placeholder="Leave a comment"
+                  placeholder="Leave a comment or suggestion"
                 ></textarea>
 
                 <FormMessage/>
