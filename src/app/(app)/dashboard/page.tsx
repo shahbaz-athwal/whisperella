@@ -164,7 +164,7 @@ export default function Page() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {messages.length === 0 ? (
-            <div className="flex text-xl justify-center m-4">
+            <div className="flex text-xl m-4">
               You have no messages.
             </div>
           ) : (

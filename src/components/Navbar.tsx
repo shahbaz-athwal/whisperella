@@ -10,6 +10,7 @@ import { User } from "next-auth";
 function Navbar() {
   const { data: session } = useSession();
   const user: User = session?.user as User;
+  console.log(session?.user)
 
   return (
     <nav className="p-4 md:p-6 shadow-md bg-zinc-800 text-white">

@@ -5,9 +5,9 @@ import authConfig from "./auth.config";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
 
-  pages: {
-    signIn: "/signin",
-  },
+  // pages: {
+  //   signIn: "/signin",
+  // },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -19,6 +19,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             },
             data: {
               username: username,
+              isVerified: true
             },
           });
           user.username = username;

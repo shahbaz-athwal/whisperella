@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import Rating from "@/components/Rating";
 import { useToast } from "@/components/ui/use-toast";
@@ -16,8 +16,10 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { ratingSchema } from "@/schema/rating";
+import { ApiResponse } from "@/types/ApiResponse";
+import { Loader2 } from "lucide-react";
 
-export default function RatingsPage()  {
+export default function RatingsPage() {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof ratingSchema>>({
@@ -25,28 +27,43 @@ export default function RatingsPage()  {
   });
 
   const [rating, setRating] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (data: z.infer<typeof ratingSchema>) => {
     try {
-      await axios.post("/api/rating", data);
-      console.log(data)
+      setIsSubmitting(true);
+      const response = await axios.post<ApiResponse>("/api/rating", data);
+      if (response.data.success === false) {
+        toast({
+          title: "Failed",
+          description: "Failed to send rating",
+          variant: "destructive",
+        });
+      }
       toast({
         title: "Success",
         description: "Your rating is submitted. Thank You!",
       });
     } catch (error) {
-      console.error("Error submitting rating:", error);
+      const axiosError = error as AxiosError<ApiResponse>;
+      console.error("Error submitting rating:", axiosError);
       toast({
         title: "Failed",
         description: "Failed to send rating",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
     <div className="w-full mx-auto p-6 sm:p-10">
-      <h1 className="text-2xl md:text-3xl font-bold mb-4 text-center">Rate Our Service</h1>
-      <h1 className="text-xl mb-12 text-center">Your review will be featured on home page</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-4 text-center">
+        Rate Our Service
+      </h1>
+      <h1 className="text-xl mb-12 text-center">
+        Your review will be featured on home page
+      </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -63,7 +80,7 @@ export default function RatingsPage()  {
                     form.setValue("rating", rate);
                   }}
                 />
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -81,16 +98,24 @@ export default function RatingsPage()  {
                   placeholder="Leave a comment or suggestion"
                 ></textarea>
 
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
           <div className="flex justify-center">
-          <Button className="bg-zinc-800" type="submit">Send</Button>
+            <Button disabled={isSubmitting} type="submit">
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Sending
+                </>
+              ) : (
+                "Send"
+              )}
+            </Button>
           </div>
         </form>
       </Form>
     </div>
   );
-};
-
+}
