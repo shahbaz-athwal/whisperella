@@ -57,7 +57,7 @@ export default function RatingsPage() {
     }
   };
   return (
-    <div className="w-full mx-auto p-6 sm:p-10">
+    <div className="w-full max-w-4xl mx-auto p-6 sm:p-10">
       <h1 className="text-2xl md:text-3xl font-bold mb-4 text-center">
         Rate Our Service
       </h1>

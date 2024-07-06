@@ -30,6 +30,7 @@ export default function Page() {
   useEffect(() => {
     const getReviews = async () => {
       const { data } = await axios.get("/api/getreviews");
+      console.log(data.reviews)
       setReviews(data.reviews);
     };
     getReviews();
@@ -100,7 +101,7 @@ export default function Page() {
                       </Avatar>
                       <div className="flex flex-col items-start">
                         <div className="text-sm font-bold">
-                          {review.name ? review.name : review.username}
+                          {review.name ? review.name : '@' + review.username}
                         </div>
                         <div className="flex">
                           {[...Array(review.rating)].map((_, index) => (
