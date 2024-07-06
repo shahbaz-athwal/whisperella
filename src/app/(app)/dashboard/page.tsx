@@ -52,7 +52,7 @@ export default function Page() {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [form.setValue]);
+  }, [toast, form]);
 
   //get messages from backend
   const fetchMessages = useCallback(async () => {
