@@ -53,3 +53,13 @@ model User {
   messages            Message[]
   accounts            Account[]
 }
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  username  String?
+  comment   String?
+  image     String?
+  rating    Int
+  createdAt DateTime @default(now())
+}
