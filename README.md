@@ -1,3 +1,3 @@
 ## Whisperella
-- Project will be deployed soon.
+- An anonymous messaging app
 
