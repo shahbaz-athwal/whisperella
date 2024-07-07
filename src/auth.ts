@@ -5,9 +5,9 @@ import authConfig from "./auth.config";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
 
-  // pages: {
-  //   signIn: "/signin",
-  // },
+  pages: {
+    signIn: "/signin",
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
