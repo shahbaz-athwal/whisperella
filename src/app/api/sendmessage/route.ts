@@ -1,4 +1,5 @@
 import db from "@/lib/db";
+import { sendNotification } from "@/lib/sendNotification";
 
 export async function POST(request: Request) {
     const { username, content } = await request.json()
@@ -31,6 +32,10 @@ export async function POST(request: Request) {
             }
             
         })
+        try { 
+            await sendNotification(user.email!, user.username!)
+        } catch (error) {}
+        
         return Response.json({
             success: true,
             message: "Message sent successfully."

@@ -1,21 +1,21 @@
 import db from "@/lib/db";
 import z from "zod"
 import { usernameSchema } from "@/schema/signUp";
+import { NextRequest } from "next/server";
 
 const UsernameQuerySchema = z.object({
     username: usernameSchema
 })
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
+    const query = request.nextUrl.searchParams.get("username")
     try {
-        const {searchParams} = new URL(request.url)
         const queryParam= {
-            username: searchParams.get('username')
+            username: query 
         }
         const result = UsernameQuerySchema.safeParse(queryParam)
 
         if (!result.success) {
-            const errors = result.error.format().username?._errors || []
             return Response.json({
                 success: false,
                 message: "username format in incorrect"
