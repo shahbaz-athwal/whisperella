@@ -13,6 +13,7 @@ import dayjs from "dayjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Review {
   id: number;
@@ -26,19 +27,23 @@ interface Review {
 
 export default function Page() {
   const [reviews, setReviews] = useState<Review[]>([]);
+  const { toast } = useToast();
 
   const getReviews = useCallback(async () => {
     try {
-      const { data } = await axios.get(`/api/getreviews?timestamp=${new Date().getTime()}`);
+      const { data } = await axios.get(`/api/getreviews`);
       setReviews(data.reviews);
+      toast({
+        description: "Showing latest reviews",
+      })
     } catch (error) {
       console.error("Error fetching reviews:", error);
     }
-  }, [setReviews]);
+  }, [setReviews, toast]);
 
   useEffect(() => {
     getReviews();
-  }, [getReviews]);
+  }, [getReviews, toast]);
 
   return (
     <>
