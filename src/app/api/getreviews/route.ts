@@ -1,16 +1,16 @@
-import { auth } from "@/auth";
 import db from "@/lib/db";
 
 export async function GET(request: Request) {
-    const session = await auth()
-    if (!session || !session.user) {
-        return Response.json({
-            success: false,
-            message: "Not authenticated"
-        },{
-            status: 401
-        })
-    }
-    const reviews = await db.review.findMany()
-    return Response.json({reviews: reviews.reverse()})
+
+    const reviews = await db.review.findMany();
+    console.log('Setting headers for reviews response');
+    return new Response(JSON.stringify({ reviews: reviews.reverse() }), {
+        headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+            'Surrogate-Control': 'no-store'
+        }
+    });
 }
