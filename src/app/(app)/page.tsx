@@ -26,17 +26,19 @@ interface Review {
 }
 
 export default function Page() {
-  const { data: session } = useSession()
   const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
     const getReviews = async () => {
-      const { data } = await axios.get("/api/getreviews");
-      console.log(data.reviews)
+      const { data } = await axios.get("/api/getreviews", {
+        headers: {
+          'Cache-Control': 'no-cache'
+        }
+      });
       setReviews(data.reviews);
     };
     getReviews();
-  }, [session]);
+  }, []);
 
   return (
     <>
