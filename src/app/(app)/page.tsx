@@ -11,7 +11,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cache, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 interface Review {
@@ -36,7 +36,6 @@ export default function Page() {
           "Expires": "0"
         },
       });
-      console.log("Fetched reviews:", data.reviews);
       setReviews(data.reviews);
     } catch (error) {
       console.error("Error fetching reviews:", error);
