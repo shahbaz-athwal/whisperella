@@ -34,7 +34,7 @@ export default function Page() {
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
-  }, []);
+  }, [setReviews]);
 
   useEffect(() => {
     getReviews();
