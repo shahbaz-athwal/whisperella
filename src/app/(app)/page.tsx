@@ -11,7 +11,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useCallback, useEffect, useState } from "react";
+import { cache, useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 interface Review {
@@ -29,12 +29,19 @@ export default function Page() {
 
   const getReviews = useCallback(async () => {
     try {
-      const { data } = await axios.get("/api/getreviews");
+      const { data } = await axios.get("/api/getreviews", {
+        headers: {
+          "Cache-Control": "no-cache",
+          "Pragma": "no-cache",
+          "Expires": "0"
+        },
+      });
+      console.log("Fetched reviews:", data.reviews);
       setReviews(data.reviews);
     } catch (error) {
-      console.error('Error fetching reviews:', error);
+      console.error("Error fetching reviews:", error);
     }
-  }, [setReviews]);
+  }, []);
 
   useEffect(() => {
     getReviews();
@@ -105,7 +112,7 @@ export default function Page() {
                       </Avatar>
                       <div className="flex flex-col items-start">
                         <div className="text-sm font-bold">
-                          {review.name ? review.name : '@' + review.username}
+                          {review.name ? review.name : "@" + review.username}
                         </div>
                         <div className="flex">
                           {[...Array(review.rating)].map((_, index) => (
