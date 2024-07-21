@@ -13,6 +13,7 @@ import dayjs from "dayjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 interface Review {
   id: number;
@@ -25,6 +26,7 @@ interface Review {
 }
 
 export default function Page() {
+  const { data: session } = useSession()
   const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function Page() {
       setReviews(data.reviews);
     };
     getReviews();
-  }, []);
+  }, [session]);
 
   return (
     <>
