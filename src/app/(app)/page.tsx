@@ -29,13 +29,7 @@ export default function Page() {
 
   const getReviews = useCallback(async () => {
     try {
-      const { data } = await axios.get("/api/getreviews", {
-        headers: {
-          "Cache-Control": "no-cache",
-          "Pragma": "no-cache",
-          "Expires": "0"
-        },
-      });
+      const { data } = await axios.get(`/api/getreviews?timestamp=${new Date().getTime()}`);
       setReviews(data.reviews);
     } catch (error) {
       console.error("Error fetching reviews:", error);
