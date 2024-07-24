@@ -13,12 +13,12 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex flex-col w-full min-h-screen justify-between">
-      <div className="w-ful">
-        <Navbar />
-        {children}
+    <div className="bg-zinc-800 min-h-screen flex flex-col">
+      <Navbar />
+      <div className="pt-16 flex-1 flex flex-col justify-between bg-white w-full">
+        <main className="flex-1">{children}</main>
+        <Footer />
       </div>
-      <Footer />
-    </main>
+    </div>
   );
 }
