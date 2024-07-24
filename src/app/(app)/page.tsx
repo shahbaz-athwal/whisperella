@@ -11,9 +11,8 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useToast } from "@/components/ui/use-toast";
 
 interface Review {
   id: number;
@@ -27,23 +26,14 @@ interface Review {
 
 export default function Page() {
   const [reviews, setReviews] = useState<Review[]>([]);
-  const { toast } = useToast();
-
-  const getReviews = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`/api/getreviews`);
-      setReviews(data.reviews);
-      toast({
-        description: "Showing latest reviews",
-      })
-    } catch (error) {
-      console.error("Error fetching reviews:", error);
-    }
-  }, [setReviews, toast]);
 
   useEffect(() => {
+    const getReviews = async () => {
+      const { data } = await axios.get(`/api/getreviews`);
+      setReviews(data.reviews);
+    };
     getReviews();
-  }, [getReviews, toast]);
+  }, []);
 
   return (
     <>
@@ -140,3 +130,4 @@ export default function Page() {
     </>
   );
 }
+

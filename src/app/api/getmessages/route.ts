@@ -16,6 +16,9 @@ export async function GET(request: Request) {
         const messages = await db.message.findMany({
             where: {
                 userId: Number(userId)
+            },
+            orderBy: {
+                id: "desc"
             }
         })
         if (!messages) {
@@ -28,7 +31,7 @@ export async function GET(request: Request) {
         }
         return Response.json({
             success: true,
-            messages: messages.reverse()
+            messages
             
         },{
             status: 200

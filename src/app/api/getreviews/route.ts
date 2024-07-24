@@ -1,12 +1,12 @@
-import { auth } from "@/auth";
 import db from "@/lib/db";
+import { unstable_noStore } from "next/cache";
 
 export async function GET(request: Request) {
-    const session = await auth()
-    if (!session || !session.user) {
-       console.log("Hit")
+  unstable_noStore();
+  const reviews = await db.review.findMany({
+    orderBy: {
+        id: "desc"
     }
-    const reviews = await db.review.findMany();
-    console.log(reviews)
-    return Response.json({ reviews: reviews.reverse() });
+  });
+  return Response.json({ reviews });
 }
