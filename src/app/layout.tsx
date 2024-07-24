@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description: "Sending anonymous messages made easier.",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider>
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} bg-zinc-800`}>
         {children}
         <Toaster />
        </body>
