@@ -15,7 +15,7 @@ export default function Layout({
   return (
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-1 bg-white pt-12">{children}</main>
+        <main className="flex-1 bg-white py-8">{children}</main>
         <Footer />
       </div>
   );
