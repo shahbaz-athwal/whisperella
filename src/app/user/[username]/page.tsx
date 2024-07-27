@@ -95,7 +95,7 @@ export default function Page() {
         </div>
         <div className="text-center">
           <div className="mb-4">Get Your Own Message Board</div>
-          <Link href={"/signup"}>
+          <Link href={"/"}>
             <Button>Create Your Account</Button>
           </Link>
         </div>
