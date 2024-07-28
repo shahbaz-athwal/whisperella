@@ -10,21 +10,17 @@ export const ShareButton = ({ message }: any) => {
     const node = contentRef.current;
     if (node) {
       try {
-        const dataUrl = await toJpeg(node , {
-          quality: 0.8
+        const dataUrl = await toJpeg(node, {
+          quality: 0.8,
         });
         const blob = await (await fetch(dataUrl)).blob();
-        const filesArray = [
-          new File([blob], "Share_Message.jpeg", {
-            type: blob.type,
-          }),
-        ];
+        const file = new File([blob], "Share-Message.jpeg", {
+          type: blob.type,
+        });
 
-        if (navigator.canShare && navigator.canShare({ files: filesArray })) {
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
-            files: filesArray,
-            title: "Share Anonymous Message",
-            text: "Share Anonymous Message",
+            files: [file],
           });
         } else {
           console.log("Web Share API is not supported in your browser.");
@@ -52,7 +48,9 @@ export const ShareButton = ({ message }: any) => {
           className="w-[720px] h-[1280px] p-5 text-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-opacity-70"
         >
           <h1 className="py-20 text-7xl font-bold text-white">Whisperella</h1>
-          <h1 className="text-4xl p-4 text-white font-sans mt-4 max-h-[90%] overflow-hidden">{message}</h1>
+          <h1 className="text-4xl p-4 text-white font-sans mt-4 max-h-[90%] overflow-hidden">
+            {message}
+          </h1>
         </div>
       </div>
 
