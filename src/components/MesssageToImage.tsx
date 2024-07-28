@@ -8,39 +8,39 @@ export const ShareButton = ({ message }: any) => {
 
   const handleShare = async () => {
     const node = contentRef.current;
-    // if (node) {
-    //   try {
-    //     const dataUrl = await toJpeg(node, {
-    //       quality: 0.9,
-    //     });
-    //     const blob = await (await fetch(dataUrl)).blob();
-    //     const file = new File([blob], "Share-Message.jpeg", {
-    //       type: blob.type,
-    //     });
+    if (node) {
+      try {
+        const dataUrl = await toJpeg(node, {
+          quality: 0.9,
+        });
+        const blob = await (await fetch(dataUrl)).blob();
+        const file = new File([blob], "Share-Message.jpeg", {
+          type: blob.type,
+        });
 
-    //     if (navigator.canShare && navigator.canShare({ files: [file] })) {
-    //       await navigator.share({
-    //         files: [file],
-    //       });
-    //     } else {
-    //       console.log("Web Share API is not supported in your browser.");
-    //     }
-    //   } catch (error) {
-    //     console.error("Error sharing", error);
-    //   }
-    // }
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+          });
+        } else {
+          console.log("Web Share API is not supported in your browser.");
+        }
+      } catch (error) {
+        console.error("Error sharing", error);
+      }
+    }
 
     //Dev only
 
-    if (node) {
-      const dataUrl = await toJpeg(node, {
-        quality: 0.9,
-      });
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "instagram-share.jpeg";
-      link.click();
-    }
+    // if (node) {
+    //   const dataUrl = await toJpeg(node, {
+    //     quality: 0.9,
+    //   });
+    //   const link = document.createElement("a");
+    //   link.href = dataUrl;
+    //   link.download = "instagram-share.jpeg";
+    //   link.click();
+    // }
   };
 
   return (

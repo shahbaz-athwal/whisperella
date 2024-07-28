@@ -15,7 +15,7 @@ function Navbar() {
   return (
     <nav className="p-4 md:p-6 shadow-md bg-zinc-800 text-white">
       <div className="flex max-w-7xl mx-auto justify-between">
-        <a href="/" className="text-4xl sm:text-5xl font-bold">
+        <a href="/" className="text-3xl sm:text-5xl font-bold">
           Whisperella
         </a>
         <div className="flex space-x-4">

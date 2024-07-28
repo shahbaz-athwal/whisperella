@@ -65,7 +65,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
             {dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
           </div>
 
-          <div className="flex flex-col justify-between col-span-1 ">
+          <div className="flex flex-col justify-between gap-4 col-span-1 ">
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button size="sm" className="max-w-16" variant="destructive">
@@ -89,7 +89,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
               </AlertDialogContent>
             </AlertDialog>
 
-            {!isMobileDevice() ? (
+            {isMobileDevice() ? (
               <ShareButton message={message.content} className="w-5 h-5" />
             ) : (
               <AlertDialog>
