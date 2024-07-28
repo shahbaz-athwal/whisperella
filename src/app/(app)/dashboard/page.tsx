@@ -164,16 +164,14 @@ export default function Page() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {messages.length === 0 ? (
-            <div className="flex text-xl m-4">
-              You have no messages.
-            </div>
+            <div className="flex text-xl m-4">You have no messages.</div>
           ) : (
             messages.map((message) => (
-              <MessageCard
-                key={message.id}
-                message={message}
-                onMessageDelete={deleteMessage}
-              />
+                <MessageCard
+                  key={message.id}
+                  message={message}
+                  onMessageDelete={deleteMessage}
+                />
             ))
           )}
         </div>
