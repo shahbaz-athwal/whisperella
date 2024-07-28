@@ -9,7 +9,7 @@ import axios, { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Copy } from "lucide-react";
+import { Copy, RefreshCcw } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { z } from "zod";
 import { Separator } from "@/components/ui/separator";
@@ -52,12 +52,11 @@ export default function Page() {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [toast, form]);
+  }, [form]);
 
   //get messages from backend
   const fetchMessages = useCallback(async () => {
     setIsLoading(true);
-    setIsSwitchLoading(true);
     try {
       const response = await axios.get<ApiResponse>("/api/getmessages");
       setMessages(response.data.messages || []);
@@ -72,8 +71,10 @@ export default function Page() {
         description:
           axiosError.response?.data.message || "Error getting messages",
       });
+    } finally {
+      setIsLoading(false);
     }
-  }, [setIsLoading, setMessages, toast]);
+  }, []);
 
   // Fetch initial state from the server
   useEffect(() => {
@@ -82,7 +83,7 @@ export default function Page() {
     fetchMessages();
 
     fetchAcceptMessageStatus();
-  }, [session, form.setValue, toast, fetchAcceptMessageStatus, fetchMessages]);
+  }, [session, form.setValue]);
 
   //flip message accept status
   const handleSwitchChange = async () => {
@@ -150,28 +151,42 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="flex space-x-2 m-4">
-          <Switch
-            {...form.register("acceptMessages")}
-            checked={acceptMessages}
-            onCheckedChange={handleSwitchChange}
-            disabled={isSwitchLoading}
-          />
-          <span>Accept Messages: {acceptMessages ? "On" : "Off"}</span>
+        <div className="flex justify-between mx-4 sm:mx-8 mt-6">
+          <div className="flex space-x-2 items-center">
+            <Switch
+              {...form.register("acceptMessages")}
+              checked={acceptMessages}
+              onCheckedChange={handleSwitchChange}
+              disabled={isSwitchLoading}
+            />
+            <span>Accept Messages: {acceptMessages ? "On" : "Off"}</span>
+          </div>
+          <Button
+            variant="outline"
+            onClick={() => {
+              fetchMessages();
+            }}
+          >
+            {isLoading ? (
+              <RefreshCcw className="h-4 w-4 animate-spin" />
+            ) : (
+              <RefreshCcw className="h-4 w-4 " />
+            )}
+          </Button>
         </div>
 
-        <Separator className="my-8 h-0.5 bg-zinc-400 rounded" />
+        <Separator className="my-8 h-0.5 bg-zinc-300 rounded" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {messages.length === 0 ? (
             <div className="flex text-xl m-4">You have no messages.</div>
           ) : (
             messages.map((message) => (
-                <MessageCard
-                  key={message.id}
-                  message={message}
-                  onMessageDelete={deleteMessage}
-                />
+              <MessageCard
+                key={message.id}
+                message={message}
+                onMessageDelete={deleteMessage}
+              />
             ))
           )}
         </div>

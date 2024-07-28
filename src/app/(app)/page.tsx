@@ -38,14 +38,15 @@ export default function Page() {
   return (
     <>
       <div className="flex flex-col items-center text-center px-4 py-12 text-zinc-800">
-        <section className="mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold">
-            Dive into the World of Anonymous Feedback
+          <h1 className="text-3xl md:text-5xl font-bold mb-6">
+            Dive into the World of Anonymous Messages
           </h1>
-          <p className="mt-3 md:mt-4 text-base md:text-lg">
-            Whisperella - Where your identity remains a secret.
+          <p className="text-xl md:text-2xl">
+            Login to get your own dashboard. 
           </p>
-        </section>
+          <p className="text-xl md:text-2xl mb-10">
+            Share your messages wherever you want.
+          </p>
 
         <Carousel
           plugins={[Autoplay({ delay: 3000 })]}

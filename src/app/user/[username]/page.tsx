@@ -31,6 +31,7 @@ export default function Page() {
   });
 
   async function onSubmit(data: z.infer<typeof messageSchema>) {
+    setIsLoading(true)
     try {
       const response = await axios.post<ApiResponse>("/api/sendmessage", {
         ...data,
@@ -91,7 +92,7 @@ export default function Page() {
           </form>
         </Form>
         <div className="flex justify-center">
-          <Separator className="my-8 bg-slate-200 h-0.5 rounded" />
+          <Separator className="my-12 bg-zinc-300 h-0.5 rounded" />
         </div>
         <div className="text-center">
           <div className="mb-4">Get Your Own Message Board</div>
