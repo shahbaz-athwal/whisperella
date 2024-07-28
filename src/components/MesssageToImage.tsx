@@ -31,7 +31,7 @@ export const ShareButton = ({ message }: any) => {
     }
 
     //Dev only
-    
+
     // if (node) {
     //   const dataUrl = await toJpeg(node, {
     //     quality: 0.9,
@@ -63,7 +63,7 @@ export const ShareButton = ({ message }: any) => {
         </div>
       </div>
 
-      <Button onClick={handleShare} variant={"outline"}>
+      <Button size="sm" className="max-w-16" onClick={handleShare} variant={"outline"}>
         <ShareIcon />
       </Button>
     </>

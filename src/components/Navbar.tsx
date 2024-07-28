@@ -55,7 +55,7 @@ function Navbar() {
                 <AlignJustify className="size-11 hover:text-gray-300" />
               </button>
             </SheetTrigger>
-            <SheetContent className="w-72 lg:w-full">
+            <SheetContent className="w-72 lg:w-full bg-zinc-700 backdrop-blur-lg bg-opacity-40">
               <div className="flex flex-col space-y-4 w-full mt-10">
                 <SheetClose asChild>
                   <Link href="/dashboard" className="w-full">

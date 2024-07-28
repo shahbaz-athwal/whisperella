@@ -54,17 +54,21 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   };
 
   return (
-    <Card className="card-bordered">
+    <Card>
       <CardHeader>
-        <div className="flex justify-between items-center">
-          <CardTitle className="text-xl break-words overflow-hidden max-w-[85%]">
-            {message.content}
-          </CardTitle>
+        <div className="grid grid-cols-7">
+          <div className="flex flex-col gap-6 col-span-6 ">
+            <CardTitle className="text-xl break-words overflow-hidden max-w-[85%]">
+              {message.content}
+            </CardTitle>
 
-          <div className="flex flex-col  space-y-2">
+            {dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
+          </div>
+
+          <div className="flex flex-col justify-between col-span-1 ">
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button size="sm" variant="destructive">
+                <Button size="sm" className="max-w-16" variant="destructive">
                   <X className="w-5 h-5" />
                 </Button>
               </AlertDialogTrigger>
@@ -85,18 +89,18 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
               </AlertDialogContent>
             </AlertDialog>
 
-            {!isMobileDevice() ? (
-              <ShareButton message={message.content} />
+            {isMobileDevice() ? (
+              <ShareButton message={message.content} className="w-5 h-5" />
             ) : (
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button variant={"outline"}>
-                    <ShareIcon />
+                  <Button size="sm" className="max-w-16" variant={"outline"}>
+                    <ShareIcon className="w-5 h-5" />
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent className="w-11/12 rounded">
                   <AlertDialogHeader>
-                  <AlertDialogTitle></AlertDialogTitle>
+                    <AlertDialogTitle></AlertDialogTitle>
 
                     <AlertDialogDescription className="text-zinc-800">
                       Sharing is only supported in mobile devices.
@@ -109,10 +113,6 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
               </AlertDialog>
             )}
           </div>
-        </div>
-
-        <div className="text-sm">
-          {dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
         </div>
       </CardHeader>
     </Card>
