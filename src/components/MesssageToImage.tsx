@@ -45,10 +45,10 @@ export const ShareButton = ({ message }: any) => {
       <div style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
         <div
           ref={contentRef}
-          className="w-[1080px] h-[1920px] p-5 text-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-opacity-70"
+          className="w-[720px] h-[1280px] p-5 text-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-opacity-70"
         >
-          <h1 className="py-18 text-8xl font-bold text-white">Whisperella</h1>
-          <h1 className="text-5xl p-4 text-white font-sans mt-4 max-h-[90%] overflow-hidden">{message}</h1>
+          <h1 className="py-20 text-7xl font-bold text-white">Whisperella</h1>
+          <h1 className="text-4xl p-4 text-white font-sans mt-4 max-h-[90%] overflow-hidden">{message}</h1>
         </div>
       </div>
 
