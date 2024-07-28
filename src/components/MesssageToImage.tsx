@@ -10,7 +10,9 @@ export const ShareButton = ({ message }: any) => {
     const node = contentRef.current;
     if (node) {
       try {
-        const dataUrl = await toJpeg(node);
+        const dataUrl = await toJpeg(node , {
+          quality: 0.8
+        });
         const blob = await (await fetch(dataUrl)).blob();
         const filesArray = [
           new File([blob], "Share_Message.jpeg", {
@@ -32,7 +34,9 @@ export const ShareButton = ({ message }: any) => {
       }
     }
     // if (node) {
-    //   const dataUrl = await toJpeg(node);
+    //   const dataUrl = await toJpeg(node , {
+    //     quality: 0.8
+    //   });
     //   const link = document.createElement("a");
     //   link.href = dataUrl;
     //   link.download = "instagram-share.jpeg";
