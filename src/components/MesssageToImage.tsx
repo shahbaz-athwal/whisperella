@@ -6,14 +6,30 @@ import { ShareIcon } from "lucide-react";
 export const ShareButton = ({ message }: any) => {
   const contentRef = useRef(null);
 
-  const handleGenerateImage = async () => {
+  const handleShare = async () => {
     const node = contentRef.current;
     if (node) {
-      const dataUrl = await toPng(node);
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "instagram-share.png";
-      link.click();
+      try {
+        const dataUrl = await toPng(node);
+        const blob = await (await fetch(dataUrl)).blob();
+        const filesArray = [
+          new File([blob], "message.png", {
+            type: blob.type,
+          }),
+        ];
+
+        if (navigator.canShare && navigator.canShare({ files: filesArray })) {
+          await navigator.share({
+            files: filesArray,
+            title: "Anonymous Message",
+            text: message,
+          });
+        } else {
+          console.log("Web Share API is not supported in your browser.");
+        }
+      } catch (error) {
+        console.error("Error sharing", error);
+      }
     }
   };
 
@@ -29,7 +45,7 @@ export const ShareButton = ({ message }: any) => {
         </div>
       </div>
 
-      <Button onClick={handleGenerateImage} variant={"outline"}>
+      <Button onClick={handleShare} variant={"outline"}>
         <ShareIcon />
       </Button>
     </>

@@ -19,7 +19,7 @@ import {
 import { Button } from "./ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { ApiResponse } from "@/types/ApiResponse";
-import ShareButton from "@/app/(app)/dashboard/MesssageToImage";
+import ShareButton from "@/components/MesssageToImage";
 
 type MessageCardProps = {
   message: Message;
@@ -85,7 +85,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
               </AlertDialogContent>
             </AlertDialog>
 
-            {isMobileDevice() ? (
+            {!isMobileDevice() ? (
               <ShareButton message={message.content} />
             ) : (
               <AlertDialog>
@@ -96,6 +96,8 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
                 </AlertDialogTrigger>
                 <AlertDialogContent className="w-11/12 rounded">
                   <AlertDialogHeader>
+                  <AlertDialogTitle></AlertDialogTitle>
+
                     <AlertDialogDescription className="text-zinc-800">
                       Sharing is only supported in mobile devices.
                     </AlertDialogDescription>
