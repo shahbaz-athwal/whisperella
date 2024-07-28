@@ -139,7 +139,7 @@ export default function Page() {
               type="text"
               value={profileUrl}
               disabled
-              className="w-full bg-gray-50 border rounded-md p-4 focus:outline-none"
+              className="w-full bg-gray-50 border rounded-md p-4 focus:outline-none text-ellipsis"
             />
             <Button
               onClick={handleCopy}

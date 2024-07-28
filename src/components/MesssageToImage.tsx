@@ -51,10 +51,10 @@ export const ShareButton = ({ message }: any) => {
           className="w-[720px] h-[1280px] p-5 text-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-opacity-50"
         >
           <div className="relative top-[15%] p-8 mt-4">
-            <h2 className="text-5xl font-bold text-left mx-4 text-white mb-12">
-              Anonymous Message:
+            <h2 className="text-5xl font-bold text-center mx-4 text-white mb-12">
+              Anonymous Message
             </h2>
-            <div className="rounded-2xl p-6 place-content-center shadow-lg backdrop-blur-lg bg-black/50">
+            <div className="rounded-2xl p-6 place-content-center shadow-lg bg-black/40">
               <h1 className="text-4xl text-white font-sans overflow-hidden break-words">
                 {message}
               </h1>
