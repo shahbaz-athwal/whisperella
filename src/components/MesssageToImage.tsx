@@ -13,7 +13,7 @@ export const ShareButton = ({ message }: any) => {
         const dataUrl = await toJpeg(node);
         const blob = await (await fetch(dataUrl)).blob();
         const filesArray = [
-          new File([blob], "message.png", {
+          new File([blob], "Share_Message.jpeg", {
             type: blob.type,
           }),
         ];
@@ -31,13 +31,13 @@ export const ShareButton = ({ message }: any) => {
         console.error("Error sharing", error);
       }
     }
-  //   if (node) {
-  //     const dataUrl = await toJpeg(node);
-  //     const link = document.createElement("a");
-  //     link.href = dataUrl;
-  //     link.download = "instagram-share.png";
-  //     link.click();
-  //   }
+    // if (node) {
+    //   const dataUrl = await toJpeg(node);
+    //   const link = document.createElement("a");
+    //   link.href = dataUrl;
+    //   link.download = "instagram-share.jpeg";
+    //   link.click();
+    // }
   };
 
   return (
@@ -47,8 +47,8 @@ export const ShareButton = ({ message }: any) => {
           ref={contentRef}
           className="w-[1080px] h-[1920px] p-5 text-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-opacity-70"
         >
-          <h1 className="py-12 text-9xl font-bold text-white">Whisperella</h1>
-          <h1 className="text-5xl p-4 text-white font-sans mt-4 max-h-[90%] overflow-hidden text-wrap break-words">{message}</h1>
+          <h1 className="py-18 text-8xl font-bold text-white">Whisperella</h1>
+          <h1 className="text-5xl p-4 text-white font-sans mt-4 max-h-[90%] overflow-hidden">{message}</h1>
         </div>
       </div>
 
