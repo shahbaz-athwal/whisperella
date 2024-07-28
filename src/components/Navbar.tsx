@@ -65,6 +65,13 @@ function Navbar() {
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>
+                  <Link href="/discover" className="w-full">
+                    <Button className="w-full" variant={"secondary"}>
+                      Find People
+                    </Button>
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
                   <Link href="/feedback" className="w-full">
                     <Button className="w-full" variant={"secondary"}>
                       Leave a Review

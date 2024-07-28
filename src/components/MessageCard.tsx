@@ -56,8 +56,8 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   return (
     <Card>
       <CardHeader>
-        <div className="grid grid-cols-7">
-          <div className="flex flex-col gap-6 col-span-6 ">
+        <div className="grid grid-cols-7 h-full">
+          <div className="flex flex-col justify-between gap-6 col-span-6">
             <CardTitle className="text-xl break-words overflow-hidden max-w-[85%]">
               {message.content}
             </CardTitle>
@@ -89,7 +89,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
               </AlertDialogContent>
             </AlertDialog>
 
-            {isMobileDevice() ? (
+            {!isMobileDevice() ? (
               <ShareButton message={message.content} className="w-5 h-5" />
             ) : (
               <AlertDialog>
