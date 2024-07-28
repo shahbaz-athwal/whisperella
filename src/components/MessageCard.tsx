@@ -85,7 +85,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
               </AlertDialogContent>
             </AlertDialog>
 
-            {!isMobileDevice() ? (
+            {isMobileDevice() ? (
               <ShareButton message={message.content} />
             ) : (
               <AlertDialog>
