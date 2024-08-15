@@ -53,7 +53,7 @@ export default {
           );
           if (isPasswordCorrect) {
             return {
-              userId: user.id.toString(),
+              id: user.id.toString(),
               name: user.name,
               username: user.username!,
               email: user.email,
