@@ -4,7 +4,6 @@ import db from "@/lib/db";
 import authConfig from "./auth.config";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-
   pages: {
     signIn: "/signin",
   },
@@ -19,26 +18,26 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             },
             data: {
               username: username,
-              isVerified: true
+              isVerified: true,
             },
           });
           user.username = username;
         }
-        token.userId = user.id?.toString();
+        token.userId = user.id;
         token.username = user.username;
         token.picture = user.image;
         token.isAcceptingMessages = user.isAcceptingMessages;
         token.isVerified = user.isVerified;
-      } 
+      }
       return token;
     },
-    async session({ session, token }: any) {
+    async session({ session, token }) {
       if (token) {
-        session.user.userId = token.userId;
-        session.user.username = token.username;
-        session.user.image = token.picture;
-        session.user.isVerified = token.isVerified;
-        session.user.isAcceptingMessages = token.isAcceptingMessages;
+        session.user.userId = token.userId as string;
+        session.user.username = token.username as string;
+        session.user.image = token.picture as string;
+        session.user.isVerified = token.isVerified as boolean;
+        session.user.isAcceptingMessages = token.isAcceptingMessages as boolean;
       }
       return session;
     },

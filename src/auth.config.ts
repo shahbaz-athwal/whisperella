@@ -3,6 +3,7 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import db from "@/lib/db";
+import type { User } from "next-auth";
 
 import type { NextAuthConfig } from "next-auth";
 
@@ -19,16 +20,20 @@ export default {
       allowDangerousEmailAccountLinking: true,
     }),
     Credentials({
-      async authorize(credentials: any): Promise<any> {
+      credentials: {
+        identifier: { label: "Username", type: "text", placeholder: "" },
+        password: { label: "Password", type: "" },
+      },
+      async authorize(credentials): Promise<User> {
         try {
           const user = await db.user.findFirst({
             where: {
               OR: [
                 {
-                  email: credentials.identifier,
+                  email: credentials.identifier as string,
                 },
                 {
-                  username: credentials.identifier,
+                  username: credentials.identifier as string,
                 },
               ],
             },
@@ -43,11 +48,19 @@ export default {
             throw new Error("Please verify your email.");
           }
           const isPasswordCorrect = await bcrypt.compare(
-            credentials.password,
+            credentials.password as string,
             user.password!
           );
           if (isPasswordCorrect) {
-            return user;
+            return {
+              userId: user.id.toString(),
+              name: user.name,
+              username: user.username!,
+              email: user.email,
+              image: user.image,
+              isVerified: user.isVerified,
+              isAcceptingMessages: user.isAcceptingMessages,
+            };
           } else {
             throw new Error("Incorrect Password");
           }
