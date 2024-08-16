@@ -25,6 +25,7 @@ function PageContent() {
       ...data,
       username,
     });
+    form.reset({ ...form.getValues(), content: "" });
   }
 
   return (
