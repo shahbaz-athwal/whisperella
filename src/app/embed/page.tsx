@@ -11,6 +11,7 @@ import { useSearchParams } from "next/navigation";
 import { ApiResponse } from "@/types/ApiResponse";
 import axios from "axios";
 import { Loader2, Check } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 function PageContent() {
   const mode = useSearchParams().get("mode") === "dark";
@@ -30,9 +31,19 @@ function PageContent() {
 
   return (
     <div>
-      <div className={`p-2 bg-transparent ${mode ? "dark" : ""}`}>
+      <div className={`bg-transparent ${mode ? "dark" : ""}`}>
+        <div className="flex justify-center items-center">
+          <Separator className="my-4 rounded h-[0.150rem] w-5/12" />
+          <div className="px-2 pb-1 text-zinc-500 font-semibold tracking-tight">
+            or
+          </div>
+          <Separator className="my-4 rounded h-[0.150rem] w-5/12" />
+        </div>
+        <p className="text-xl text-black dark:text-white font-semibold my-4">
+          Leave an annonymous message
+        </p>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mx-1">
             <FormField
               control={form.control}
               name="content"
