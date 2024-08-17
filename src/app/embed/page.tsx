@@ -87,11 +87,11 @@ function PageContent() {
 export default function Page() {
   return (
     <Suspense
-      fallback={
-        <div className="flex justify-center h-24 items-center">
-          <Loader2 className="animate-spin" />
-        </div>
-      }
+      // fallback={
+      //   <div className="flex justify-center h-24 items-center">
+      //     <Loader2 className="animate-spin" />
+      //   </div>
+      // }
     >
       <PageContent />
     </Suspense>
