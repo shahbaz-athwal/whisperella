@@ -33,11 +33,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     },
     async session({ session, token }) {
       if (token) {
-        session.user.userId = token.userId as string;
-        session.user.username = token.username as string;
-        session.user.image = token.picture as string;
-        session.user.isVerified = token.isVerified as boolean;
-        session.user.isAcceptingMessages = token.isAcceptingMessages as boolean;
+        session.user.userId = token.userId;
+        session.user.username = token.username;
+        session.user.image = token.picture;
+        session.user.isVerified = token.isVerified;
+        session.user.isAcceptingMessages = token.isAcceptingMessages;
       }
       return session;
     },
