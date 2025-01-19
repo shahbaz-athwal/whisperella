@@ -107,7 +107,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogAction>Ok</AlertDialogAction>
+                    <AlertDialogAction>OK</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
