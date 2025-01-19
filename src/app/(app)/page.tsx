@@ -93,7 +93,7 @@ export default function Page() {
             <Button className="text-white">Give a star on GitHub</Button>
           </a>
         </div>
-        <h2 className="text-2xl font-bold mb-8">User Reviews</h2>
+        <h2 className="text-3xl font-extrabold m-6">User Reviews</h2>
         <Carousel
           plugins={[Autoplay({ delay: 4000 })]}
           className="w-full max-w-lg md:max-w-xl relative"
