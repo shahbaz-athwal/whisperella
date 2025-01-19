@@ -52,7 +52,7 @@ export default function Page() {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [form]);
+  }, [form, toast]);
 
   //get messages from backend
   const fetchMessages = useCallback(async () => {
@@ -74,7 +74,7 @@ export default function Page() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [toast]);
 
   // Fetch initial state from the server
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function Page() {
     fetchMessages();
 
     fetchAcceptMessageStatus();
-  }, [session, form.setValue]);
+  }, [session, form.setValue, fetchMessages, fetchAcceptMessageStatus]);
 
   //flip message accept status
   const handleSwitchChange = async () => {
