@@ -11,6 +11,7 @@ import { ApiResponse } from "@/types/ApiResponse";
 import axios from "axios";
 import { Loader2, Check } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { Suspense } from "react";
 
 function PageContent() {
   const mode = useSearchParams().get("mode") === "dark";
@@ -89,5 +90,9 @@ function PageContent() {
 }
 
 export default function Page() {
-  return <PageContent />;
+  return (
+    <Suspense>
+      <PageContent />
+    </Suspense>
+  );
 }
