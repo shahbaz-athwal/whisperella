@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Provider from "./Provider";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
+import BackgroundWrapper from "@/components/BackgroundWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
   title: "Welcome to Whisperella",
   description: "Sending anonymous messages made easier.",
 };
-
 
 export default function RootLayout({
   children,
@@ -20,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider>
-      <body className={`${inter.className} bg-transparent`}>
-        {children}
-        <Toaster />
-       </body>
+        <body>
+          <BackgroundWrapper>{children}</BackgroundWrapper>
+          <Toaster />
+        </body>
       </Provider>
     </html>
   );
