@@ -6,7 +6,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import ReviewGrid from "./components/review-grid";
 import { BackgroundLines } from "@/components/ui/bg-lines";
 import { FeaturesSection } from "./components/features";
-import { IconBrandGithub } from "@tabler/icons-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
+import Link from "next/link";
 
 export interface ReviewProps {
   id: number;
@@ -49,20 +51,29 @@ export default function Page() {
           ✨ Features
         </h2>
         <FeaturesSection />
-        {/* 
-        <div className="my-8">
-          <a
-            href="https://github.com/shahbaz-athwal/whisperella"
-            target="_blank"
-          >
-            <div className="flex items-center justify-center">
-              <IconBrandGithub size={16} className="mr-2" />
-              <span className="text-sm text-neutral-600 dark:text-neutral-300">
-                Give a Star on GitHub
-              </span>
-            </div>
-          </a>
-        </div> */}
+
+        <Card className="w-full max-w-md my-6">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center">
+              Get started with your journey
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-x-4 flex">
+            <Button
+              asChild
+              className="w-full bg-purple-700 hover:bg-purple-900 transition-all duration-200 transform hover:scale-105"
+            >
+              <Link href="/signup">Sign Up</Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="w-full hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
+            >
+              <Link href="/">Try as Guest</Link>
+            </Button>
+          </CardContent>
+        </Card>
 
         <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-2 relative z-20 font-bold tracking-tight">
           ✌🏻 User Reviews
