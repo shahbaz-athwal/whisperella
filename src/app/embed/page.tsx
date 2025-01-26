@@ -31,7 +31,7 @@ function PageContent() {
 
   return (
     <div>
-      <div className={`bg-transparent ${mode ? "dark" : ""}`}>
+      <div className={`${mode ? "dark" : ""}`}>
         {username === "shahbazathwal2107" && (
           <div className="flex justify-center items-center">
             <Separator className="my-4 rounded h-[0.150rem] w-5/12" />

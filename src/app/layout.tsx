@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Provider from "./Provider";
 import { Toaster } from "@/components/ui/toaster";
-import BackgroundWrapper from "@/components/BackgroundWrapper";
+import BackgroundWrapper from "./BackgroundWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider>
-        <body>
+        <body className="bg-transparent">
           <BackgroundWrapper>{children}</BackgroundWrapper>
           <Toaster />
         </body>

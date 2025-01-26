@@ -12,7 +12,13 @@ export default function BackgroundWrapper({
   const isEmbedPage = pathname === "/embed";
 
   useEffect(() => {
-    document.body.className = isEmbedPage ? "bg-transparent" : "bg-zinc-800";
+    if (isEmbedPage) {
+      document.body.classList.remove("bg-zinc-800");
+      document.body.classList.add("bg-transparent");
+    } else {
+      document.body.classList.remove("bg-transparent");
+      document.body.classList.add("bg-zinc-800");
+    }
   }, [isEmbedPage]);
 
   return <>{children}</>;
