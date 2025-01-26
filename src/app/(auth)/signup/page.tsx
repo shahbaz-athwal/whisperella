@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
+import OAuthSignInComponent from "../OAuthSignInComponent";
 
 export default function Page() {
   const [username, setUsername] = useState("");
@@ -143,7 +144,11 @@ export default function Page() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Email</FormLabel>
-                      <Input placeholder="" {...field} className="w-full bg-zinc-100" />
+                      <Input
+                        placeholder=""
+                        {...field}
+                        className="w-full bg-zinc-100"
+                      />
                       <FormMessage />
                     </FormItem>
                   )}
@@ -194,14 +199,18 @@ export default function Page() {
               </Button>
             </form>
           </Form>
+          <OAuthSignInComponent />
           <div className="text-center mt-4">
-          <p>
-            Already a member?{' '}
-            <Link href="/signin" className="text-gray-700 underline hover:text-black">
-              Sign in
-            </Link>
-          </p>
-        </div>
+            <p>
+              Already a member?{" "}
+              <Link
+                href="/signin"
+                className="text-gray-700 underline hover:text-black"
+              >
+                Sign in
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </>

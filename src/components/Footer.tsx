@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="flex text-sm sm:text-base justify-center p-4 md:p-6 bg-zinc-800 text-white">
+    <footer className="flex font-sans font-light text-sm sm:text-base justify-center p-5 bg-zinc-800 text-white">
       © 2025 Whisperella. All rights reserved.
     </footer>
   );
