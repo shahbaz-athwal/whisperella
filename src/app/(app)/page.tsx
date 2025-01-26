@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import ReviewGrid from "./components/review-grid";
 import { BackgroundLines } from "@/components/ui/bg-lines";
 import { FeaturesSection } from "./components/features";
+import { IconBrandGithub } from "@tabler/icons-react";
 
 export interface ReviewProps {
   id: number;
@@ -48,31 +49,32 @@ export default function Page() {
           ✨ Features
         </h2>
         <FeaturesSection />
-
+        {/* 
         <div className="my-8">
           <a
             href="https://github.com/shahbaz-athwal/whisperella"
             target="_blank"
           >
-            <button className="p-[4px] relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl" />
-              <div className="px-8 py-2 bg-black rounded-[9px]  relative group transition duration-200 text-white hover:bg-transparent">
+            <div className="flex items-center justify-center">
+              <IconBrandGithub size={16} className="mr-2" />
+              <span className="text-sm text-neutral-600 dark:text-neutral-300">
                 Give a Star on GitHub
-              </div>
-            </button>
+              </span>
+            </div>
           </a>
-        </div>
+        </div> */}
+
         <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-2 relative z-20 font-bold tracking-tight">
           ✌🏻 User Reviews
         </h2>
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mb-12 px-6 py-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <Skeleton key={i} className="h-[250px] w-full" />
             ))}
           </div>
         ) : (
-          <div className="w-full max-w-7xl px-4">
+          <div className="w-full max-w-7xl px-4 mb-12">
             <ReviewGrid reviews={reviews} />
           </div>
         )}
