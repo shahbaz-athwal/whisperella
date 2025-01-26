@@ -13,10 +13,10 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-1 bg-white py-8">{children}</main>
-        <Footer />
-      </div>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="bg-white">{children}</main>
+      <Footer />
+    </div>
   );
 }
