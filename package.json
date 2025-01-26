@@ -25,6 +25,7 @@
     "@radix-ui/react-switch": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@react-email/components": "^0.0.19",
+    "@tabler/icons-react": "^3.29.0",
     "ai": "^3.2.10",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
@@ -36,6 +37,7 @@
     "html-to-image": "^1.11.11",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.397.0",
+    "motion": "^12.0.5",
     "next": "14.2.4",
     "next-auth": "^5.0.0-beta.19",
     "react": "^18",
@@ -48,10 +50,10 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.14.8",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/bcryptjs": "^2.4.6",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
