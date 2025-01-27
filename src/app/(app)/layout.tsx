@@ -3,10 +3,9 @@ import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Manage your dashboard.",
+  title: "Welcome to Whisperella",
+  description: "Sending anonymous messages made easier.",
 };
-
 export default function Layout({
   children,
 }: Readonly<{
