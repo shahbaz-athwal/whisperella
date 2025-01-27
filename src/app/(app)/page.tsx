@@ -42,17 +42,12 @@ export default function Page() {
     <>
       <div className="flex flex-col items-center">
         <BackgroundLines className="pointer-events-none h-40 md:h-60 flex items-center justify-center w-full flex-col px-4">
-          <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-6xl font-sans py-2 relative z-20 font-bold tracking-tight">
+          <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-4xl md:text-6xl font-sans py-2 relative z-20 font-bold tracking-tight">
             Dive into the World <br /> of Anonymous Messages
           </h2>
         </BackgroundLines>
 
-        <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-2 relative z-20 font-bold tracking-tight">
-          ✨ Features
-        </h2>
-        <FeaturesSection />
-
-        <Card className="w-full max-w-md my-6">
+        <Card className="w-full max-w-md mb-10">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center">
               Get started with your journey
@@ -75,7 +70,12 @@ export default function Page() {
           </CardContent>
         </Card>
 
-        <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-2 relative z-20 font-bold tracking-tight">
+        <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-4 relative z-20 font-bold tracking-tight">
+          ✨ Features
+        </h2>
+        <FeaturesSection />
+
+        <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-4 relative z-20 font-bold tracking-tight">
           ✌🏻 User Reviews
         </h2>
         {loading ? (
