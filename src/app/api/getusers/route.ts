@@ -9,12 +9,16 @@ export async function GET(request: Request) {
       name: true,
       username: true,
       image: true,
+      emailVerified: true,
     },
     orderBy: {
       id: "desc",
     },
     where: {
       isAcceptingMessages: true,
+      isVerified: {
+        not: null,
+      },
     },
   });
   return Response.json({ users });

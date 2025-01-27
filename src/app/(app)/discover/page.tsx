@@ -1,7 +1,15 @@
-function Page() {
-  return (
-    <div className="text-center">Currently Under Development</div>
-  )
-}
+import { Metadata } from "next";
+import UserList from "./UserList";
 
-export default Page
+export const metadata: Metadata = {
+  title: "Discover - Whisperella",
+  description: "Discover new users",
+};
+
+export default function Home() {
+  return (
+    <main>
+      <UserList />
+    </main>
+  );
+}
