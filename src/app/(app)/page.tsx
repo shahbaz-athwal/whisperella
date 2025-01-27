@@ -47,7 +47,7 @@ export default function Page() {
           </h2>
         </BackgroundLines>
 
-        <Card className="w-full max-w-md mb-10">
+        <Card className="w-full max-w-md mb-10 mx-2">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center">
               Get started with your journey
@@ -70,12 +70,12 @@ export default function Page() {
           </CardContent>
         </Card>
 
-        <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-4 relative z-20 font-bold tracking-tight">
+        <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-2 pt-6 relative z-20 font-bold tracking-tight">
           ✨ Features
         </h2>
         <FeaturesSection />
 
-        <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-4 relative z-20 font-bold tracking-tight">
+        <h2 className="container md:ml-12 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-3xl md:text-4xl font-sans py-2 pt-6 relative z-20 font-bold tracking-tight">
           ✌🏻 User Reviews
         </h2>
         {loading ? (
