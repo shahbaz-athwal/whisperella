@@ -47,7 +47,7 @@ export default function Page() {
           </h2>
         </BackgroundLines>
 
-        <Card className="w-full max-w-md mb-10 mx-2">
+        <Card className="md:w-full max-w-md my-10">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center">
               Get started with your journey
