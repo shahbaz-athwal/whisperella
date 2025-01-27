@@ -149,7 +149,7 @@ export default function UserList() {
       </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] top-[25%] md:top-[50%]">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold">
               Send message to {selectedUser?.name || selectedUser?.username}
